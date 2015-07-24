@@ -137,12 +137,14 @@ angular.module('monospaced.elastic', [])
           function initMirror() {
             var mirrorStyle = mirrorInitStyle;
 
-            mirrored = ta;
-            // copy the essential styles from the textarea to the mirror
-            angular.forEach(copyStyle, function(val) {
-              mirrorStyle += val + ':' + taStyle.getPropertyValue(val) + ';';
-            });
-            mirror.setAttribute('style', mirrorStyle);
+            if (initComputedStyle()) {
+              mirrored = ta;
+              // copy the essential styles from the textarea to the mirror
+              angular.forEach(copyStyle, function(val) {
+                mirrorStyle += val + ':' + taStyle.getPropertyValue(val) + ';';
+              });
+              mirror.setAttribute('style', mirrorStyle);
+            }
           }
 
           function adjust() {
